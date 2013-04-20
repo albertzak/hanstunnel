@@ -24,6 +24,7 @@
 #include "echo.h"
 #include "tun.h"
 
+#include <stdlib.h>
 #include <string>
 
 class Worker

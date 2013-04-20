@@ -30,6 +30,8 @@
 #include <stdlib.h>
 #include <errno.h>
 #include <syslog.h>
+#include <getopt.h>
+#include <unistd.h>
 
 void usage()
 {
