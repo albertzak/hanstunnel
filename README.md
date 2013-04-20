@@ -1,11 +1,15 @@
 # Hans - IP over ICMP
-*This is a quick & dirty fork to make Hans compile on Ubuntu. Binaries are included.*
+> A hotel room without internet is worth even less to me than a hotel room without a bed.
+>
+>  [- @dcurtis](https://twitter.com/dcurtis/statuses/325029551711322112)
 
-Hans makes it possible to [tunnel IPv4 through ICMP echo packets][http://en.wikipedia.org/wiki/ICMP_tunnel], so you could call it a ping tunnel. This can be useful when you find yourself in the situation that your Internet access is firewalled, but pings are allowed.
+**This is [@albertzak's](https://twitter.com/albertzak) quick & dirty fork to make Hans compile on Ubuntu. OSX & Ubuntu binaries are included.**
+
+Hans makes it possible to [tunnel IPv4 through ICMP echo packets](http://en.wikipedia.org/wiki/ICMP_tunnel), so you could call it a ping tunnel. This can be useful when you find yourself in the situation that your Internet access is firewalled, but pings are allowed.
 
 Hans runs on Linux as a client and a server. It runs on Mac OS X, iPhone/iPod touch, FreeBSD and OpenBSD as a client only.
 
-Is is inspired by [icmptx][http://thomer.com/icmptx/] and adds some features:
+Is is inspired by [icmptx](http://thomer.com/icmptx/) and adds some features:
 
 ### Reliability
  - Hans works reliably in situations when the client is behind a firewall that allows only one echo reply per request.
@@ -21,39 +25,37 @@ Is is inspired by [icmptx][http://thomer.com/icmptx/] and adds some features:
 
 ## Get Hans
 
-[Original Hans source][http://sourceforge.net/projects/hanstunnel]
+[Original Hans source](http://sourceforge.net/projects/hanstunnel)
 
-[Hans Mac OS X binary.][http://sourceforge.net/projects/hanstunnel/files/osx]
+[Hans Mac OS X binary.](http://sourceforge.net/projects/hanstunnel/files/osx)
 
-For the iPhone/iPod touch version have a look at [tunemu.][http://code.gerade.org/tunemu/]
+For the iPhone/iPod touch version have a look at [tunemu.](http://code.gerade.org/tunemu/)
 
 ## Quick Start
 
-### Documentation
-
-http://code.gerade.org/hans/
+[Documentation](http://code.gerade.org/hans/)
 
 ### Compiling
 
-make
+    make
 
 ### Running as a server
 
-./hans -s 10.1.2.0 -r -p password -u nobody
-echo 1 > /proc/sys/net/ipv4/icmp_echo_ignore_all
+    ./hans -s 10.1.2.0 -r -p password -u nobody
+    echo 1 > /proc/sys/net/ipv4/icmp_echo_ignore_all
 
 ### Running as a client
 
-./hans -c server_address -p password -u nobody
+    ./hans -c server_address -p password -u nobody
 
 ### Help
 
-./hans
+    ./hans
 
 
 ## Use Hans
 
-First, make sure you kernel supports tun devices. For Mac OS X you can get the drivers [here.][http://tuntaposx.sourceforge.net/]
+First, make sure you kernel supports [tun](http://vtun.sourceforge.net/tun/) devices. For Mac OS X you can get the drivers [here.](http://tuntaposx.sourceforge.net/)
 
 To compile hans, unpack it and run make:
 
@@ -63,19 +65,27 @@ To compile hans, unpack it and run make:
 
 ### To run as a server (as root):
 
-    ./hans -s 10.1.2.0 -p password
+    sudo ./hans -s 10.1.2.0 -p password
 
 This will create a new tun device and assign the IP 10.1.2.1 to it. Note that Hans can not receive echo requests on BSD systems. Therefore the server only works on Linux.
 
 ### To run as a client (as root):
 
-    ./hans -c server_address -p password
+    sudo ./hans -c server_address -p password
 
 This will connect to the server at `server_addess`, create a new tun device and assign an IP from the network `10.1.2.0/24` to it.
 
 Now you can run a proxy on the server or let it act as a router and use NAT to allow the clients to access the Internet.
 
 ## Troubleshoot / Tweak
+
+### Can't get it to compile?
+
+Make sure you have GCC and some other basics installed:
+
+    sudo apt-get install git build-essential
+
+### Can't connect?
 
 If you are behind a firewall that filters icmp packets in any way, which is likely, you might have to make some adjustments. During this process it is useful to add the `-fv` options to the command. With this hans stays attached to the terminal and shows some debug output.
 
@@ -95,12 +105,12 @@ Note that when you run Hans without any parameters you get a short description o
 
 ## Hans
 
+![Hans](http://verlag.inndependent.de/images/report_45162_xxl_kerl_jodellehrer.jpg "Hans")
+
 Hans is this guy living in the Alps who knows all about echoes.
 
 ## Contact
 
-`friedrich_dot_schoeller_at_gmail_dot_com` 
-Feedback is welcome.
+**Friedrich Schöller,** Original Author `friedrich_dot_schoeller_at_gmail_dot_com` 
 
-
-http://sourceforge.net/projects/hanstunnel
+**Albert Zak,** Ubuntu Fork `me@albertzak.com` 
